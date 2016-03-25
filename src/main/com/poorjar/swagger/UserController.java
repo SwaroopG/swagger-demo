@@ -1,8 +1,7 @@
 package com.poorjar.swagger;
 
-import java.util.Collection;
-import java.util.List;
-
+import com.poorjar.swagger.dataaccess.User;
+import com.poorjar.swagger.dataaccess.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -11,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.poorjar.swagger.dataaccess.User;
-import com.poorjar.swagger.dataaccess.UserRepository;
+import java.util.Collection;
+import java.util.List;
 
 @RestController
 @EnableAutoConfiguration
@@ -37,7 +36,7 @@ public class UserController {
         LOGGER.error(users);
         return this.userRepository.save(users);
     }
-    
+
 
     /**
      * Deletes a specific user.

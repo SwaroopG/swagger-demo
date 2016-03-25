@@ -1,6 +1,5 @@
 package com.poorjar.swagger.dataaccess;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
