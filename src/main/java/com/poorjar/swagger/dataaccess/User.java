@@ -1,5 +1,9 @@
 package com.poorjar.swagger.dataaccess;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity

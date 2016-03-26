@@ -2,6 +2,7 @@ package com.poorjar.swagger;
 
 import com.poorjar.swagger.dataaccess.User;
 import com.poorjar.swagger.dataaccess.UserRepository;
+import io.swagger.annotations.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -20,9 +21,16 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping("/users/all")
+    @ApiOperation(value = "getUsers", nickname = "getUsers")
+    @RequestMapping(path = "/users/all", method = RequestMethod.GET, produces = "application/json")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Success", response = List.class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found"),
+        @ApiResponse(code = 500, message = "Failure")})
     public List<User> getUsers() {
-        return this.userRepository.findAll();
+        return userRepository.findAll();
     }
 
     /**
@@ -34,7 +42,7 @@ public class UserController {
     @RequestMapping(value = "/users/create", method = RequestMethod.POST)
     public Collection<User> createUsers(@RequestBody Collection<User> users) {
         LOGGER.error(users);
-        return this.userRepository.save(users);
+        return userRepository.save(users);
     }
 
 
@@ -43,10 +51,10 @@ public class UserController {
      *
      * @param userId The id of the user to be deleted.
      */
-    @RequestMapping("/users/delete")
+    @RequestMapping(path = "/users/delete", method = RequestMethod.DELETE)
     public void deleteUser(@RequestBody long userId) {
         LOGGER.error(userId);
-        return this.userRepository.delete(userId);
+        userRepository.delete(userId);
     }
 
 }
