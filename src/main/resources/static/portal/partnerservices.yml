@@ -1,0 +1,89 @@
+swagger: '2.0'
+info:
+  title: Partner Services APIs
+  description: Partner services provides various APIs for blah blah ......
+  version: "2016.2"
+host: int-vod-001.hesvr.digeo.dgosvc-priv.com:34905
+# array of all schemes that your API supports
+schemes:
+  - http
+produces:
+  - application/json
+paths:
+  /vod/catalog/1/PHE_ARRIS/categories:
+    get:
+      summary: Get Categories
+      description: Gets the Categories associated to a provided Category ID
+      parameters:
+        - name: parentId
+          in: query
+          description: Parent Category identifier.
+          type: integer
+          default: 0
+      tags:
+        - VOD
+      responses:
+        200:
+          description: An array of products
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Category'
+        404:
+          description: Category not found
+          schema:
+            $ref: '#/definitions/404Error'
+definitions:
+  Category:
+    type: object
+    properties:
+      id:
+        type: number
+        description: Unique identifier representing a specific category.
+        example: 1
+      name:
+        type: string
+        description: Name of the category.
+      iconSmall:
+        type: string
+        description: Url of the small icon for this category.
+      iconMedium:
+        type: string
+        description: Url of the small icon for this category.
+      categoryPath:
+        type: string
+        description: The category path.
+      numberOfAssets:
+        type: number
+        description: Number of the assets in this category.
+      numberOfCategories:
+        type: string
+        description: Number of the categories in this category.
+      type:
+        type: string
+        description: Type of the category.
+      serviceId:
+        type: number
+        description: Service ID of the category.
+      ordinal:
+        type: number
+        description: Ordinal of the category.
+      promotional:
+        type: boolean
+        description: Is the category promotional.
+      isLeaf:
+        type: boolean
+        description: Is this a leaf?
+      assetsUrl:
+        type: boolean
+        description: Assets URL.
+  404Error:
+    type: object
+    properties:
+      httpStatusCode:
+        type: integer
+        format: int32
+      appErrorCode:
+        type: number
+      description:
+        type: string

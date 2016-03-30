@@ -1,0 +1,37 @@
+swagger: '2.0'
+info:
+  title: Retail Services
+  description: Retail Services provides various APIs for blah blah ......
+  version: "2016.2"
+host: arris-mobile-int.dgosvc-priv.com
+# array of all schemes that your API supports
+schemes:
+  - http
+produces:
+  - application/json
+paths:
+  /vod/catalog/1/PHE_ARRIS/art:
+    get:
+      summary: Get Poster Art
+      description: Gets the poster art of the desired size.
+      parameters:
+        - name: imageid
+          in: query
+          description: Image identifier.
+          type: integer
+          default: 11534508
+        - name: height
+          in: query
+          description: Height.
+          type: integer
+          default: 100
+        - name: width
+          in: query
+          description: Width.
+          type: integer
+          default: 100
+      tags:
+        - VOD
+      responses:
+        200:
+          description: A Poster Art picture
